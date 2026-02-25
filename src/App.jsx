@@ -1,6 +1,8 @@
-import React from "react";
+import {useState, useEffect} from "react";
 
 const App = () => {
+  const [length, setLength] = useState(16);
+
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
       <div className="bg-gray-900 text-gray-200 w-full max-w-md p-6 rounded-2xl shadow-xl border-gray-800">
