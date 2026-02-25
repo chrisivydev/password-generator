@@ -34,6 +34,40 @@ const App = () => {
     setPassword(generated);
   };
 
+  useEffect(() => {
+    generatePassword();
+  }, [
+    length,
+    includeUpper,
+    includeLower,
+    includeNumbers,
+    includeSymbols,
+  ]);
+
+  const copyToClipboard = () => {
+    if (!password) return;
+    navigator.clipboard.writeText(password);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const getStrength = () => {
+    let score = 0;
+    if (includeUpper) score++;
+    if (includeLower) score++;
+    if (includeNumbers) score++;
+    if (includeSymbols) score++;
+    if (length >= 16) score++;
+
+    if (score <= 2)
+      return {text: "Weak", color: "bg-red-500", width: "33%"};
+    if (score <= 4)
+      return {text: "Medium", color: "bg-yellow-500", width: "66%"};
+    return {text: "Strong", color: "bg-green-500", width: "100%"};
+  };
+
+  const stength = getStrength();
+
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
       <div className="bg-gray-900 text-gray-200 w-full max-w-md p-6 rounded-2xl shadow-xl border-gray-800">
