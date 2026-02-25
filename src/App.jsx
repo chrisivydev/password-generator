@@ -16,10 +16,11 @@ const App = () => {
 
   const generatePassword = () => {
     let chars = "";
-    if (includeUpper) chars = +upperChars;
-    if (includeLower) chars = +lowerChars;
-    if (includeNumbers) chars = +numberChars;
-    if (includeSymbols) chars = +symbolsChars;
+
+    if (includeUpper) chars += upperChars;
+    if (includeLower) chars += lowerChars;
+    if (includeNumbers) chars += numberChars;
+    if (includeSymbols) chars += symbolsChars;
 
     if (!chars) {
       setPassword("");
@@ -66,7 +67,7 @@ const App = () => {
     return {text: "Strong", color: "bg-green-500", width: "100%"};
   };
 
-  const stength = getStrength();
+  const strength = getStrength();
 
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
@@ -79,13 +80,29 @@ const App = () => {
         {/* password display */}
         <div className="flex mb-4">
           <input
-            className="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 "
             type="text"
+            value={password}
             placeholder="Generated Password"
+            className="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 "
+            readOnly
           />
-          <button className="bg-indigo-600 hover:bg-indigo-700 px-4 rounded-r-lg transition">
-            Copy
+          <button
+            onClick={copyToClipboard}
+            className="bg-indigo-600 hover:bg-indigo-700 px-4 rounded-r-lg transition"
+          >
+            {copied ? "Copied!" : "Copy"}
           </button>
+        </div>
+
+        {/* strength indicator */}
+        <div className="mb-4">
+          <div className="h-2 bg-gray-800 rounded">
+            <div
+              className={`h-2 rounded ${strength.color}`}
+              style={{width: strength.width}}
+            ></div>
+          </div>
+          <p className="text-sm mt-1">{strength.text}</p>
         </div>
 
         {/* password length */}
