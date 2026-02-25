@@ -124,22 +124,42 @@ const App = () => {
         <div className="space-y-3 mb-6">
           <label className="flex items-center justify-between cursor-pointer">
             <span>Include Uppercase</span>
-            <input type="checkbox" className="accent-indigo-600" />
+            <input
+              type="checkbox"
+              checked={includeUpper}
+              className="accent-indigo-600"
+              onChange={() => setIncludeUpper(!includeUpper)}
+            />
           </label>
 
           <label className="flex items-center justify-between cursor-pointer">
             <span>Include Lowercase</span>
-            <input type="checkbox" className="accent-indigo-600" />
+            <input
+              type="checkbox"
+              checked={includeLower}
+              className="accent-indigo-600"
+              onChange={() => setIncludeLower(!includeLower)}
+            />
           </label>
 
           <label className="flex items-center justify-between cursor-pointer">
             <span>Include Numbers</span>
-            <input type="checkbox" className="accent-indigo-600" />
+            <input
+              type="checkbox"
+              checked={includeNumbers}
+              className="accent-indigo-600"
+              onChange={() => setIncludeNumbers(!includeNumbers)}
+            />
           </label>
 
           <label className="flex items-center justify-between cursor-pointer">
             <span>Include Symbols</span>
-            <input type="checkbox" className="accent-indigo-600" />
+            <input
+              type="checkbox"
+              checked={includeSymbols}
+              className="accent-indigo-600"
+              onChange={() => setIncludeSymbols(!includeSymbols)}
+            />
           </label>
         </div>
 
