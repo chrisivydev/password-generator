@@ -2,6 +2,37 @@ import {useState, useEffect} from "react";
 
 const App = () => {
   const [length, setLength] = useState(16);
+  const [includeUpper, setIncludeUpper] = useState(true);
+  const [includeLower, setIncludeLower] = useState(true);
+  const [includeNumbers, setIncludeNumbers] = useState(true);
+  const [includeSymbols, setIncludeSymbols] = useState(false);
+  const [password, setPassword] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+  const numberChars = "0123456789";
+  const symbolsChars = "!@#$%^&*()_+{}[]<>?";
+
+  const generatePassword = () => {
+    let chars = "";
+    if (includeUpper) chars = +upperChars;
+    if (includeLower) chars = +lowerChars;
+    if (includeNumbers) chars = +numberChars;
+    if (includeSymbols) chars = +symbolsChars;
+
+    if (!chars) {
+      setPassword("");
+      return;
+    }
+
+    let generated = "";
+    for (let i = 0; i < length; i++) {
+      generated += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    setPassword(generated);
+  };
 
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
