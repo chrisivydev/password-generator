@@ -114,6 +114,8 @@ const App = () => {
             type="range"
             min="6"
             max="32"
+            value={length}
+            onChange={(e) => setLength(Number(e.target.value) || 0)}
             className="w-full accent-indigo-600"
           />
         </div>
